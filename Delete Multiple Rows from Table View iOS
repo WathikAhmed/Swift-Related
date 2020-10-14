@@ -1,0 +1,37 @@
+// Button to toggle the tableView editing mode
+@IBAction func edit(_ sender: Any) {
+        if(self.tableView.isEditing == true)
+            {
+                tableView.allowsMultipleSelectionDuringEditing = true
+                self.tableView.isEditing = false
+                self.navigationItem.rightBarButtonItem?.title = "Edit"
+            }
+            else
+            {
+                tableView.allowsMultipleSelectionDuringEditing = true
+                self.tableView.isEditing = true
+                self.navigationItem.rightBarButtonItem?.title = "Done"
+            }
+    }
+    
+    
+// Button to delete the selected rows
+@IBAction func deleteRows(_ sender: Any) {
+    if let selectedRows = tableView.indexPathsForSelectedRows {
+        // 1
+        var items = [String]()
+        for indexPath in selectedRows  {
+            items.append(numbers[indexPath.row])
+        }
+        // 2
+        for item in items {
+            if let index = numbers.index(of: item) {
+                numbers.remove(at: index)
+            }
+        }
+        // 3
+        tableView.beginUpdates()
+        tableView.deleteRows(at: selectedRows, with: .automatic)
+        tableView.endUpdates()
+    }
+}
