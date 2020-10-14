@@ -1,0 +1,7 @@
+import Foundation
+
+let fullName    = "First Last"
+let fullNameArr = fullName.components(separatedBy: " ")
+
+let name    = fullNameArr[0]
+let surname = fullNameArr[1]
